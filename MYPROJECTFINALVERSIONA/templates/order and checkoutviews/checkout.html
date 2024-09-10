@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Colombia's Pastries</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Checkout</h2>
+        <ul class="list-group mb-4" id="checkout-items">
+            <!-- Items will be populated by JavaScript -->
+        </ul>
+        <h4>Total: $<span id="total-price">0.00</span></h4>
+        <button id="confirm-order" class="btn btn-success btn-block mt-3">Confirm Order</button>
+        <a href="{% url 'cart' %}" class="btn btn-secondary btn-block mt-2">Go Back to Cart</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Function to render checkout items
+            function renderCheckoutItems() {
+                const checkoutContainer = $('#checkout-items');
+                checkoutContainer.empty();
+                let total = 0;
+
+                if (cart.length > 0) {
+                    cart.forEach(item => {
+                        total += item.price;
+                        const checkoutItemHtml = `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <img src="${item.img}" class="img-thumbnail mr-3" alt="${item.name}" style="width: 50px;">
+                                ${item.name} - $${item.price.toFixed(2)}
+                            </li>
+                        `;
+                        checkoutContainer.append(checkoutItemHtml);
+                    });
+                }
+
+                $('#total-price').text(total.toFixed(2));
+            }
+
+            // Event handler for confirming order
+            $('#confirm-order').on('click', function () {
+                if (cart.length > 0) {
+                    localStorage.setItem('order', JSON.stringify(cart)); // Save the current cart as the order
+                    localStorage.removeItem('cart'); // Clear the cart
+                    alert('Order confirmed! Redirecting to confirmation page...');
+                    window.location.href = '{% url "order_confirmation" %}'; // Redirect to the confirmation page
+                } else {
+                    alert('Your cart is empty. Please add items before checking out.');
+                }
+            });
+
+            // Initial render
+            renderCheckoutItems();
+        });
+    </script>
+</body>
+</html>
+

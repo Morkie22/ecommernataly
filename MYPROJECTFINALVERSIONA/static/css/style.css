@@ -1,0 +1,198 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: greenyellow;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Enhanced Navbar Styles */
+.navbar {
+    background-color: #007bff !important; /* Matching blue color with the footer */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    position: sticky; /* Sticks to the top */
+    top: 0; /* Positions the navbar at the top */
+    z-index: 1000; /* Ensures it stays above other content */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for effects */
+}
+
+.navbar:hover {
+    background-color: #0056b3 !important; /* Slightly darker shade on hover for subtle effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important; /* White text for better contrast */
+    font-weight: bold; /* Bold for emphasis */
+    font-size: 1.1rem; /* Slightly larger font for readability */
+    transition: color 0.3s, transform 0.3s; /* Smooth color and scale transitions */
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #ffe600 !important; /* Bright yellow on hover for pop effect */
+    transform: scale(1.1); /* Slight zoom on hover for interactivity */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Adds subtle text shadow */
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* Toggler button border color */
+}
+
+/* Animation for Navbar Links */
+.nav-link {
+    position: relative; /* To position the underline */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #ffe600; /* Yellow underline */
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expands the underline on hover */
+}
+
+/* Existing Styles */
+.container {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    width: 300px;
+    margin: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.card-text {
+    display: block;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    border-radius: 50px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+#cart-items .list-group-item {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#cart-items .list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#checkout-button {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#checkout-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.product-details-hover {
+    display: none;
+    font-size: 0.9rem;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s;
+}
+
+.card-body:hover .product-details-hover {
+    display: block;
+    opacity: 1;
+}
